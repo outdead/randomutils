@@ -1,2 +1,4 @@
-# randomutils
-Random utils
+# Random utils
+
+## [OS User](user)
+Creates and deletes Linux user.
