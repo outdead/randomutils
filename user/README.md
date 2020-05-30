@@ -1,7 +1,7 @@
 # OS User
 Creates and deletes Linux user. You must have sudo privileges to call create and delete commands.
 
-## Usege 
+## Usage 
 
     ./user/user.sh command [arguments...]
 
