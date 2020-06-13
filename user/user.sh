@@ -22,7 +22,7 @@ function create() {
        return 1
     fi
 
-    grep "${username}:" /etc/passwd >/dev/null
+    egrep "(^${username}:)" /etc/passwd >/dev/null
     if [ $? -eq 0 ]; then
         echo "user ${username} already exists"
         return 1
