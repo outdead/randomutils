@@ -81,8 +81,8 @@ case "$1" in
         echo "   help, h     Shows a list of commands or help for one command"
         echo "   version, v  Prints $0 version"
         echo "   create      Creates a user with username \$1 if does not exist, sets \$2 as password"
-        echo "               and adds user to the group \$3. Usage: ./$0 create {username} {password} [group]"
-        echo "   delete      removes user with username \$1. Usage: ./$0 delete {username}"
+        echo "               and adds user to the group \$3. Usage: $0 create {username} {password} [group]"
+        echo "   delete      removes user with username \$1. Usage: $0 delete {username}"
         echo
         echo "GLOBAL OPTIONS:"
         echo "   --help, -h     show help"
