@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="1.0.3"
+VERSION="1.0.4"
 YEAR="2020"
 
 # create creates a user with username $1 if does not exist,
