@@ -20,4 +20,4 @@ Creates and deletes Linux user. You must have sudo privileges to call create and
 
 ## Example
 
-    wget -O - https://github.com/outdead/randomutils/user/user.sh | bash user.sh username password group
+    wget -O user.sh https://raw.githubusercontent.com/outdead/randomutils/master/user/user.sh && sudo bash user.sh create username password group; rm user.sh
