@@ -66,10 +66,10 @@ case "$1" in
         echo "$0 version $VERSION";;
     help|h|--help|-h)
         echo "NAME:"
-        echo "   $0 script allows you to create or delete Linux user."
+        echo "   ${0##*/} script allows you to create or delete Linux user."
         echo
         echo "USAGE:"
-        echo "   ./$0 command [arguments...]"
+        echo "   $0 command [arguments...]"
         echo
         echo "VERSION:"
         echo "   $VERSION"
