@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-VERSION="1.0.4"
+VERSION="1.0.5"
 YEAR="2020"
+AUTHOR="Pavel Korotkiy (outdead)"
 
 # create creates a user with username $1 if does not exist,
 # sets $2 as password and adds user to the group $3.
@@ -89,5 +90,5 @@ case "$1" in
         echo "   --version, -v  print the version"
         echo
         echo "COPYRIGHT:"
-        echo "   Copyright (c) $YEAR Pavel Korotkiy (outdead)"
+        echo "   Copyright (c) $YEAR $AUTHOR"
 esac
