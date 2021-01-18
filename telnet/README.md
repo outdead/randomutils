@@ -1,9 +1,8 @@
-TELNET
-======
+# TELNET
 Runs command on remote server with TELNET protocol.
 
-# Usage
-```text
+## Usage
+```bash
 USAGE:
    ./telnet.sh [global options] command [arguments...]
 
@@ -28,7 +27,7 @@ GLOBAL OPTIONS:
    --version, -v  print the version
 ```
 
-# Example 
+## Example 
 
     PASSWORD="banana" IP=172.19.0.2 PORT=8081 COMMAND=version ./telnet.sh
     ./telnet.sh -c version -a 172.19.0.2:8081 -p banana

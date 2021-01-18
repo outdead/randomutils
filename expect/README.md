@@ -1,8 +1,7 @@
-Expect
-======
+# Expect
 Deb snippet for automatically enter SSH password with using [Expect](https://en.wikipedia.org/wiki/Expect) utility.
 
-# Install
+## Install
 
     # Install Expect util
     apt-get install expect
@@ -10,6 +9,6 @@ Deb snippet for automatically enter SSH password with using [Expect](https://en.
     # Install helper
     sudo cp exp /usr/bin/exp
 
-# Usage
+## Usage
 
     exp password ssh user@host
