@@ -9,4 +9,4 @@ In progress
 ## Example 
 
     DOMAIN="vpn.example.com" USENAME="example" PASSWORD="password" ./ipsec.sh create
-   ./ipsec.sh create vpn.example.com example password
+    ./ipsec.sh create vpn.example.com example password
