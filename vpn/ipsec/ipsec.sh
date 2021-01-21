@@ -36,6 +36,8 @@ function install() {
     replace_before_rules
     fill_sysctl
 
+    sysctl -p
+
     ufw disable
     echo "y" | ufw enable
 
