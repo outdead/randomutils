@@ -240,8 +240,7 @@ function run_test() {
 
 case "$1" in
     install)
-        # install "$2" "$3" "$4";;
-        echo "Not implemented";;
+        install "$2" "$3" "$4";;
     test)
         run_test "$2" "$3" "$4";;
     version|v|--version|-v)
