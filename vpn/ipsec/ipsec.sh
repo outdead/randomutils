@@ -32,6 +32,9 @@ function install() {
     fill_ipsec_secret "$2" "$3"
 
     systemctl restart strongswan-starter
+
+    apt -y install ufw
+
     ufw allow OpenSSH
     echo "y" | ufw enable
     ufw allow 500,4500/udp
@@ -63,7 +66,7 @@ function create_certificates() {
             --dn "CN=${domain}" --san "${domain}" \
             --flag serverAuth --flag ikeIntermediate --outform pem \
         >  "${PKI_FOLDER}/certs/server-cert.pem"
-    cp -r "${PKI_FOLDER}/*" "${IPSECD_FOLDER}/"
+    cp -r "${PKI_FOLDER}/"* "${IPSECD_FOLDER}/"
 }
 
 function fill_ipsec_conf() {
