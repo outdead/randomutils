@@ -26,7 +26,7 @@ function install() {
 
     create_certificates "${domain}"
 
-    mv "${IPSEC_CONF_FILE}{,.original}"
+    mv "${IPSEC_CONF_FILE}"{,.original}
 
     fill_ipsec_conf "${domain}"
     fill_ipsec_secret "$2" "$3"
@@ -51,7 +51,7 @@ function create_certificates() {
     local domain="$1"
     if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
 
-    mkdir -p "${PKI_FOLDER}/{cacerts,certs,private}" && chmod 700 "${PKI_FOLDER}"
+    mkdir -p "${PKI_FOLDER}/"{cacerts,certs,private} && chmod 700 "${PKI_FOLDER}"
     pki --gen --type rsa --size 4096 --outform pem > "${PKI_FOLDER}/private/ca-key.pem"
     pki --self --ca --lifetime 3650 --in "${PKI_FOLDER}/private/ca-key.pem" \
         --type rsa --dn "CN=VPN root CA" --outform pem > "${PKI_FOLDER}/cacerts/ca-cert.pem"
