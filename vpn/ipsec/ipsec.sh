@@ -4,6 +4,8 @@ VERSION="0.0.0"
 YEAR="2021"
 AUTHOR="Pavel Korotkiy (outdead)"
 
+PKI_FOLDER=~/pki
+IPSECD_FOLDER=/etc/ipsec.d
 IPSEC_CONF_FILE=/etc/ipsec.conf
 IPSEC_SECRET_FILE=/etc/ipsec.secrets
 BEFORE_RULES_FILE=/etc/ufw/before.rules
@@ -11,19 +13,20 @@ SYSCTL_CONF_FILE=/etc/ufw/sysctl.conf
 
 function install() {
     local domain="$1"
-    local username="$2"
-    local password="$3"
+    if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
 
-    if [ -z "${domain}" ]; then echo "domain is not set"; return 1; fi;
-    if [ -z "${username}" ]; then echo "username is not set"; return 1; fi;
-    if [ -z "${password}" ]; then echo "password is not set"; return 1; fi;
+    local username="$2"
+    if [[ -z "${username}" ]]; then echo "username is not set"; return 1; fi;
+
+    local password="$3"
+    if [[ -z "${password}" ]]; then echo "password is not set"; return 1; fi;
 
     apt install -y strongswan strongswan-pki libcharon-extra-plugins libcharon-extauth-plugins \
         libstrongswan-extra-plugins libstrongswan-standard-plugins
 
     create_certificates "${domain}"
 
-    mv "${IPSEC_CONF_FILE}"{,.original}
+    mv "${IPSEC_CONF_FILE}{,.original}"
 
     fill_ipsec_conf "${domain}"
     fill_ipsec_secret "$2" "$3"
@@ -41,38 +44,31 @@ function install() {
     ufw disable
     echo "y" | ufw enable
 
-    cat /etc/ipsec.d/cacerts/ca-cert.pem
+    cat "${IPSECD_FOLDER}/cacerts/ca-cert.pem"
 }
 
 function create_certificates() {
     local domain="$1"
+    if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
 
-    if [ -z "${domain}" ]; then echo "domain is not set"; return 1; fi;
-
-    mkdir -p ~/pki/{cacerts,certs,private} && chmod 700 ~/pki
-
-    pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/ca-key.pem
-
-    pki --self --ca --lifetime 3650 --in ~/pki/private/ca-key.pem \
-        --type rsa --dn "CN=VPN root CA" --outform pem > ~/pki/cacerts/ca-cert.pem
-
-    pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/server-key.pem
-
-    pki --pub --in ~/pki/private/server-key.pem --type rsa \
+    mkdir -p "${PKI_FOLDER}/{cacerts,certs,private}" && chmod 700 "${PKI_FOLDER}"
+    pki --gen --type rsa --size 4096 --outform pem > "${PKI_FOLDER}/private/ca-key.pem"
+    pki --self --ca --lifetime 3650 --in "${PKI_FOLDER}/private/ca-key.pem" \
+        --type rsa --dn "CN=VPN root CA" --outform pem > "${PKI_FOLDER}/cacerts/ca-cert.pem"
+    pki --gen --type rsa --size 4096 --outform pem > "${PKI_FOLDER}/private/server-key.pem"
+    pki --pub --in "${PKI_FOLDER}/private/server-key.pem" --type rsa \
         | pki --issue --lifetime 1825 \
-            --cacert ~/pki/cacerts/ca-cert.pem \
-            --cakey ~/pki/private/ca-key.pem \
+            --cacert "${PKI_FOLDER}/cacerts/ca-cert.pem" \
+            --cakey "${PKI_FOLDER}/private/ca-key.pem" \
             --dn "CN=${domain}" --san "${domain}" \
             --flag serverAuth --flag ikeIntermediate --outform pem \
-        >  ~/pki/certs/server-cert.pem
-
-    cp -r ~/pki/* /etc/ipsec.d/
+        >  "${PKI_FOLDER}/certs/server-cert.pem"
+    cp -r "${PKI_FOLDER}/*" "${IPSECD_FOLDER}/"
 }
 
 function fill_ipsec_conf() {
     local domain="$1"
-
-    if [ -z "${domain}" ]; then echo "domain is not set"; return 1; fi;
+    if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
 
     cat >"${IPSEC_CONF_FILE}" <<EOF
 config setup
@@ -108,10 +104,10 @@ EOF
 
 function fill_ipsec_secret() {
     local username="$1"
-    local password="$2"
+    if [[ -z "${username}" ]]; then echo "username is not set"; return 1; fi;
 
-    if [ -z "${username}" ]; then echo "username is not set"; return 1; fi;
-    if [ -z "${password}" ]; then echo "password is not set"; return 1; fi;
+    local password="$2"
+    if [[ -z "${password}" ]]; then echo "password is not set"; return 1; fi;
 
     cat >"${IPSEC_SECRET_FILE}" <<EOF
 # This file holds shared secrets or RSA private keys for authentication.
@@ -227,6 +223,8 @@ EOF
 }
 
 function run_test() {
+    PKI_FOLDER=vpn/ipsec/testdata/pki
+    IPSECD_FOLDER=vpn/ipsec/testdata/ipsec.d
     IPSEC_CONF_FILE=vpn/ipsec/testdata/ipsec.conf
     IPSEC_SECRET_FILE=vpn/ipsec/testdata/ipsec.secrets
     BEFORE_RULES_FILE=vpn/ipsec/testdata/before.rules

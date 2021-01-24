@@ -8,5 +8,7 @@ In progress
 
 ## Example 
 
-    DOMAIN="vpn.example.com" USENAME="example" PASSWORD="password" ./ipsec.sh create
     ./ipsec.sh create vpn.example.com example password
+
+    wget -O ipsec.sh https://raw.githubusercontent.com/outdead/randomutils/master/vpn/ipsec/ipsec.sh && sudo bash ipsec.sh create vpn.example.com example password; rm ipsec.sh
+    
