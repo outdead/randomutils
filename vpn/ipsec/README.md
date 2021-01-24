@@ -10,9 +10,9 @@ In progress
 
     wget -O ipsec.sh https://raw.githubusercontent.com/outdead/randomutils/master/vpn/ipsec/ipsec.sh
     chmod u+x ipsec.sh
-    ./ipsec.sh create vpn.example.com example password
+    ./ipsec.sh install vpn.example.com example password
     rm ipsec.sh
 
     # Or in one command.
-    wget -O ipsec.sh https://raw.githubusercontent.com/outdead/randomutils/master/vpn/ipsec/ipsec.sh && sudo bash ipsec.sh create vpn.example.com example password; rm ipsec.sh
+    wget -O ipsec.sh https://raw.githubusercontent.com/outdead/randomutils/master/vpn/ipsec/ipsec.sh && sudo bash ipsec.sh install vpn.example.com example password; rm ipsec.sh
     
