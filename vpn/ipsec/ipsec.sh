@@ -25,11 +25,8 @@ function install() {
         libstrongswan-extra-plugins libstrongswan-standard-plugins
 
     create_certificates "${domain}"
-
-    mv "${IPSEC_CONF_FILE}"{,.original}
-
-    fill_ipsec_conf "${domain}"
-    fill_ipsec_secret "$2" "$3"
+    replace_ipsec_conf "${domain}"
+    replace_ipsec_secret "$2" "$3"
 
     systemctl restart strongswan-starter
 
@@ -69,9 +66,11 @@ function create_certificates() {
     cp -r "${PKI_FOLDER}/"* "${IPSECD_FOLDER}/"
 }
 
-function fill_ipsec_conf() {
+function replace_ipsec_conf() {
     local domain="$1"
     if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
+
+    cp "${IPSEC_CONF_FILE}"{,.original}
 
     cat >"${IPSEC_CONF_FILE}" <<EOF
 config setup
@@ -105,12 +104,14 @@ conn ikev2-vpn
 EOF
 }
 
-function fill_ipsec_secret() {
+function replace_ipsec_secret() {
     local username="$1"
     if [[ -z "${username}" ]]; then echo "username is not set"; return 1; fi;
 
     local password="$2"
     if [[ -z "${password}" ]]; then echo "password is not set"; return 1; fi;
+
+    cp "${IPSEC_SECRET_FILE}"{,.original}
 
     cat >"${IPSEC_SECRET_FILE}" <<EOF
 # This file holds shared secrets or RSA private keys for authentication.
@@ -124,6 +125,8 @@ EOF
 
 function replace_before_rules() {
     local interface=$(ip route show default | grep -oP '(?<=dev).*?(?= *proto)' | xargs)
+
+    cp "${BEFORE_RULES_FILE}"{,.original}
 
     cat >"${BEFORE_RULES_FILE}" <<EOF
 #
@@ -233,8 +236,8 @@ function run_test() {
     BEFORE_RULES_FILE=vpn/ipsec/testdata/before.rules
     SYSCTL_CONF_FILE=vpn/ipsec/testdata/sysctl.conf
 
-    fill_ipsec_conf "$1"
-    fill_ipsec_secret "$2" "$3"
+    replace_ipsec_conf "$1"
+    replace_ipsec_secret "$2" "$3"
     replace_before_rules
     fill_sysctl
 }
