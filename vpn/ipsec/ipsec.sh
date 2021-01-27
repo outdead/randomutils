@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="0.0.0"
+VERSION="0.1.0"
 YEAR="2021"
 AUTHOR="Pavel Korotkiy (outdead)"
 
@@ -228,25 +228,9 @@ net/ipv4/ip_no_pmtu_disc=1
 EOF
 }
 
-function run_test() {
-    PKI_FOLDER=vpn/ipsec/testdata/pki
-    IPSECD_FOLDER=vpn/ipsec/testdata/ipsec.d
-    IPSEC_CONF_FILE=vpn/ipsec/testdata/ipsec.conf
-    IPSEC_SECRET_FILE=vpn/ipsec/testdata/ipsec.secrets
-    BEFORE_RULES_FILE=vpn/ipsec/testdata/before.rules
-    SYSCTL_CONF_FILE=vpn/ipsec/testdata/sysctl.conf
-
-    replace_ipsec_conf "$1"
-    replace_ipsec_secret "$2" "$3"
-    replace_before_rules
-    fill_sysctl
-}
-
 case "$1" in
     install)
         install "$2" "$3" "$4";;
-    test)
-        run_test "$2" "$3" "$4";;
     version|v|--version|-v)
         echo "$0 version $VERSION";;
     help|h|--help|-h)
