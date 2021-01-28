@@ -47,6 +47,7 @@ function install() {
     cat "${IPSECD_FOLDER}/cacerts/ca-cert.pem"
 }
 
+# create_certificates creates and install certificates by pki.
 function create_certificates() {
     local domain="$1"
     if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
