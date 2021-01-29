@@ -67,6 +67,8 @@ function create_certificates() {
     cp -r "${PKI_FOLDER}/"* "${IPSECD_FOLDER}/"
 }
 
+# replace_ipsec_conf writes VPN configuration to /etc/ipsec.conf file.
+# Stores original file to /etc/ipsec.conf.original.
 function replace_ipsec_conf() {
     local domain="$1"
     if [[ -z "${domain}" ]]; then echo "domain is not set"; return 1; fi;
