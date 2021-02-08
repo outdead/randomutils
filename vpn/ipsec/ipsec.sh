@@ -107,6 +107,7 @@ conn ikev2-vpn
 EOF
 }
 
+# replace_ipsec_secret writes username and password to /etc/ipsec.secrets file.
 function replace_ipsec_secret() {
     local username="$1"
     if [[ -z "${username}" ]]; then echo "username is not set"; return 1; fi;
@@ -126,6 +127,7 @@ ${username} : EAP "${password}"
 EOF
 }
 
+# replace_before_rules writes ipsec vpn policy to /etc/ufw/before.rules file.
 function replace_before_rules() {
     local interface=$(ip route show default | grep -oP '(?<=dev).*?(?= *proto)' | xargs)
 
@@ -221,6 +223,7 @@ COMMIT
 EOF
 }
 
+# fill_sysctl writes rules to /etc/ufw/sysctl.conf file.
 function fill_sysctl() {
     cat <<EOF >> "${SYSCTL_CONF_FILE}"
 
