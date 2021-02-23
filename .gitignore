@@ -1,4 +1,10 @@
+# ide
+.vscode/
 .idea/
 
+# testdata
 /vpn/ipsec/testdata/*
 !/vpn/ipsec/testdata/preset/
+
+# dockerfiles
+storage/*
