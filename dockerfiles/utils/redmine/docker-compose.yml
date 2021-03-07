@@ -1,17 +1,22 @@
 version: '3.3'
 services:
   postgres:
-    image: "postgres:10"
-    volumes:
-      - ./storage/postgresql/data:/var/lib/postgresql/data
+    image: "postgres:10.16"
+    hostname: "postgres"
+    container_name: "postgres"
+    restart: "always"
     environment:
       POSTGRES_PASSWORD: "password"
       POSTGRES_DB: "redmine"
       PGDATA: "/var/lib/postgresql/data"
-    restart: "always"
+    volumes:
+      - ./storage/postgresql/data:/var/lib/postgresql/data
 
   redmine:
     image: "redmine:4.1.1"
+    hostname: "redmine"
+    container_name: "redmine"
+    restart: "always"
     ports:
       - "3000:3000"
     volumes:
@@ -24,4 +29,3 @@ services:
       REDMINE_DB_PASSWORD: "password"
       REDMINE_DB_DATABASE: "redmine"
       REDMINE_SECRET_KEY_BASE: "secret"
-    restart: always

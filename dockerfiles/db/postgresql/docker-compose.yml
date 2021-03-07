@@ -4,14 +4,12 @@ services:
     image: "postgres:13.2"
     hostname: "postgres"
     container_name: "postgres"
-    labels:
-      name: "postgres"
-    # restart: "always"
+    restart: "always"
     environment:
       POSTGRES_DB: "postgres"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
     ports:
-    - "5432:5432"
+      - "5432:5432"
     volumes:
-    - ./storage/postgresql/data:/var/lib/postgresql/data
+      - ./storage/postgresql/data:/var/lib/postgresql/data
