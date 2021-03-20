@@ -1,0 +1,41 @@
+version: '3.2'
+
+services:
+  onlyoffice:
+    image: "onlyoffice/documentserver:6.2.0"
+    restart: "always"
+    ports:
+      - "8091:80"
+    volumes:
+      - ./storage/onlyoffice/log:/var/log/onlyoffice
+      - ./storage/onlyoffice/data:/var/www/onlyoffice/Data
+      - ./storage/onlyoffice/lib/onlyoffice:/var/lib/onlyoffice
+      - ./storage/onlyoffice/lib/postgresql:/var/lib/postgresql
+
+  mariadb:
+    image: "mariadb:10.5.9"
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: "always"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    volumes:
+      - ./storage/nextcloud/mariadb:/var/lib/mysql
+
+  app:
+    image: "nextcloud:20.0.8"
+    restart: "always"
+    depends_on:
+      - mariadb
+      - onlyoffice
+    ports:
+      - "8092:80"
+    environment:
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+    volumes:
+      - ./storage/nextcloud/html:/var/www/html
