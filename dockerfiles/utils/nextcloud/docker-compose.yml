@@ -3,6 +3,8 @@ version: '3.2'
 services:
   onlyoffice:
     image: "onlyoffice/documentserver:6.2.0"
+    hostname: "nextcloud_onlyoffice"
+    container_name: "nextcloud_onlyoffice"
     restart: "always"
     ports:
       - "8091:80"
@@ -14,6 +16,8 @@ services:
 
   mariadb:
     image: "mariadb:10.5.9"
+    hostname: "nextcloud_mariadb"
+    container_name: "nextcloud_mariadb"
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: "always"
     environment:
@@ -26,6 +30,8 @@ services:
 
   app:
     image: "nextcloud:20.0.8"
+    hostname: "nextcloud_app"
+    container_name: "nextcloud_app"
     restart: "always"
     depends_on:
       - mariadb
