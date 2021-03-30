@@ -8,6 +8,8 @@ Deb snippet for automatically enter SSH password with using [Expect](https://en.
      
     # Install helper
     sudo cp exp /usr/bin/exp
+    sudo chmod 0644 /usr/bin/exp
+    sudo chmod +x /usr/bin/exp
 
 ## Usage
 
