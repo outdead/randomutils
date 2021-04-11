@@ -3,7 +3,20 @@ Deb snippet for install [IPsec](https://en.wikipedia.org/wiki/IPsec) VPN.
 
 ## Usage
 ```bash
-In progress
+NAME:
+   ipsec.sh script allows you to install and configure IPsec VPN.
+
+USAGE:
+   ./ipsec.sh command [arguments...]
+
+COMMANDS:
+   help, h     Shows a list of commands or help for one command
+   version, v  Prints ./ipsec.sh version
+   install     Installs Strongswan VPN server
+
+GLOBAL OPTIONS:
+   --help, -h     show help
+   --version, -v  print the version
 ```
 
 ## Example 
