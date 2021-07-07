@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-1. Write A-record on your domain  
+1. Write A-record on your domain.  
 2. Copy **.env.dist** to **.env** and make your modifications.  
 3. Start docker containers:  
 
@@ -16,5 +16,5 @@
        $ sudo systemctl restart nginx
 
 5. After that open gitea installer via browser: **https://git.domain.com** and fill the form according your .env settings. After setup is completed register a new user (use link from the navigation bar). The first registered user has admin privileges.  
-
-6. TODO: Configure Drone.  
+6. TODO: Create systemd unit.  
+7. TODO: Configure Drone.  

@@ -13,5 +13,6 @@
 2. [Postgresql](dockerfiles/db/postgresql)  
 
 ### Utils
-1. [Nextcloud](dockerfiles/utils/nextcloud)  
-2. [Redmine](dockerfiles/utils/redmine)  
+1. [Gitea](dockerfiles/utils/gitea)  
+2. [Nextcloud](dockerfiles/utils/nextcloud)  
+3. [Redmine](dockerfiles/utils/redmine)  
