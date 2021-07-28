@@ -4,7 +4,7 @@ Conv is util for fast changing video format in files.
 ## Install
 ```bash
 sudo cp conv.sh /usr/bin/conv
-sudo chmod 0644 /usr/bin/exp
+sudo chmod 0644 /usr/bin/conv
 sudo chmod +x /usr/bin/conv
 ```
 
