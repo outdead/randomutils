@@ -1,8 +1,15 @@
-# Silly Video Converter
+# Java Decompiler
 JD is wrapper for Procyon. Procyon is a Java decompiler handling language enhancements from Java 5 and beyond that
 most other decompilers don't.  
 
 ## Install
+
+### Procyon
+```bash
+sudo apt install procyon-decompiler
+```
+
+### JD
 ```bash
 sudo cp jd.sh /usr/bin/jd
 sudo chmod 0644 /usr/bin/jd
@@ -16,5 +23,5 @@ jd FILE_NAME
 
 ## Example 
 ```bash
-jd 'KahluaNumberConverter$7.class'
+jd 'SomeClassName.$1.class'
 ```
