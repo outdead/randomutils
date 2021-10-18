@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "${DOKUWIKI_HTTP_PORT}:80"
+    volumes:
+      - ./storage/dokuwiki/data:/var/www/html/data
+      - ./storage/dokuwiki/lib:/var/www/html/lib
+      - ./storage/dokuwiki/conf:/var/www/html/conf
+      - ./seed/dokuwiki/.htaccess:/var/www/html/.htaccess
+      - ./seed/dokuwiki/userstyle.css:/var/www/html/conf/userstyle.css
+    restart: always

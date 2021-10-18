@@ -1,0 +1,49 @@
+/* conf/userstyle.css */
+
+a {
+    background-image: none !important;
+    padding: 0px !important;
+}
+
+#dokuwiki__site {
+    margin: 0 auto;
+    max-width: 115em !important;
+}
+
+#dokuwiki__header .headings {
+    margin-bottom: auto;
+}
+
+#dokuwiki__header {
+    margin-bottom: -1em;
+}
+
+.dokuwiki .pageId {
+    display: none;
+}
+
+#dw__toc {
+    display: none !important;
+}
+
+div.page h1 {
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 2px;
+}
+
+div.wrap_box {
+    font-size: 90%;
+}
+
+div.wrap_box_location table, div.wrap_box_location tr, div.wrap_box_location td {
+    border: none;
+}
+
+div.wrap_box_location th, div.wrap_box_location td {
+    padding: .0em .5em !important;
+}
+
+textarea#wiki__text {
+    min-height: 500px;
+    max-width: 100%;
+}
