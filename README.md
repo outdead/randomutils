@@ -16,6 +16,7 @@ A set of scripts for various needs.
 2. [Postgresql](dockerfiles/db/postgresql)  
 
 ### Utils
-1. [Gitea](dockerfiles/utils/gitea)  
-2. [Nextcloud](dockerfiles/utils/nextcloud)  
-3. [Redmine](dockerfiles/utils/redmine)  
+1. [Dokuwiki](dockerfiles/utils/dokuwiki)  
+2. [Gitea](dockerfiles/utils/gitea)  
+3. [Nextcloud](dockerfiles/utils/nextcloud)  
+4. [Redmine](dockerfiles/utils/redmine)  
