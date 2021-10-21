@@ -23,4 +23,4 @@ GLOBAL OPTIONS:
 
 ## Example
 
-    wget -O user.sh https://raw.githubusercontent.com/outdead/randomutils/master/user/user.sh && sudo bash user.sh create username password group; rm user.sh
+    wget -O user.sh https://raw.githubusercontent.com/outdead/randomutils/master/scripts/user/user.sh && sudo bash user.sh create username password group; rm user.sh

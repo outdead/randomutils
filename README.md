@@ -2,12 +2,12 @@
 A set of scripts for various needs.  
 
 ## Bash
-1. [Expect](expect) - Deb snippet for automatically enter SSH password with using [Expect](https://en.wikipedia.org/wiki/Expect) utility.  
-1. [JD](java/decompiler) - JD is wrapper for [Procyon](http://manpages.ubuntu.com/manpages/bionic/man1/procyon.1.html) Java Decompiler.  
-2. [TELNET](telnet) - Runs command on remote server with TELNET protocol.  
-3. [OS User](user) - Creates and deletes Linux user.  
-4. [Silly Video Converter](video/convert) - Converts video files.  
-5. [IPsec VPN](vpn/ipsec) - Deb cookbook for install [IPsec](https://en.wikipedia.org/wiki/IPsec) VPN.  
+1. [Expect](scripts/expect) - Deb snippet for automatically enter SSH password with using [Expect](https://en.wikipedia.org/wiki/Expect) utility.  
+1. [JD](scripts/java/decompiler) - JD is wrapper for [Procyon](http://manpages.ubuntu.com/manpages/bionic/man1/procyon.1.html) Java Decompiler.  
+2. [TELNET](scripts/telnet) - Runs command on remote server with TELNET protocol.  
+3. [OS User](scripts/user) - Creates and deletes Linux user.  
+4. [Silly Video Converter](scripts/video/convert) - Converts video files.  
+5. [IPsec VPN](scripts/vpn/ipsec) - Deb cookbook for install [IPsec](https://en.wikipedia.org/wiki/IPsec) VPN.  
 
 ## Dockerfiles
 
