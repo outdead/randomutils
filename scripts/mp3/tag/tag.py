@@ -21,5 +21,10 @@ for subdir, dirs, files in os.walk(os.getcwd()):
                 audio.save()
                 print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
             else:
-                print('[ skip ]', file)
-                # print("\033[33m{}\033[0m{}" .format('[ skip ] ', file))
+                if file == '1. Augmenting the Physical World of Invisible Thought.mp3':
+                    audio['tracknumber'] = '01'
+                    audio.save()
+                    print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
+                else:
+                    print('[ skip ]', file)
+                    # print("\033[33m{}\033[0m{}" .format('[ skip ] ', file))
