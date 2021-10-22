@@ -1,30 +1,87 @@
 #!/usr/bin/python3
 
 import os
+import sys
+import re
 from mutagen.easyid3 import EasyID3
 
-for subdir, dirs, files in os.walk(os.getcwd()):
-    print(os.path.basename(subdir))
 
-    dirs.sort()
-    files.sort()
+def get_number_from_file_name(filename):
+    first = re.search('^(([0-9])([0-9]+)?)[ ._-]', filename)
+    if first:
+        number = int(first.groups()[0])
+        return f'{number:02d}' if number != 0 else ''
+    return ''
 
+
+def count_mp3_files(files):
+    files_count = 0
     for file in files:
-        filename, ext = os.path.splitext(file)
+        if os.path.splitext(file)[-1] == '.mp3':
+            files_count += 1
+    return str(files_count)
 
-        if ext == '.mp3':
+
+def walker():
+    # TODO: Add any args reader
+    set_tracks_total = True if len(sys.argv) > 1 and sys.argv[1] == '-t' else False
+
+    for subdir, dirs, files in os.walk(os.getcwd()):
+        if subdir.find('_skipme') != -1:
+            continue
+
+        basedir = os.path.basename(subdir)
+        print(basedir)
+
+        dirs.sort()
+        files.sort()
+
+        files_count = count_mp3_files(files)
+
+        for file in files:
+            if os.path.splitext(file)[-1] != '.mp3':
+                continue
+
+            number_from_filename = get_number_from_file_name(file)
             audio = EasyID3(os.path.join(subdir, file))
-            number = audio['tracknumber'][0]
 
-            if len(number) == 1:
-                audio['tracknumber'] = '0' + number
-                audio.save()
-                print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
-            else:
-                if file == '1. Augmenting the Physical World of Invisible Thought.mp3':
-                    audio['tracknumber'] = '01'
+            if "tracknumber" not in audio:
+                if number_from_filename == '':
+                    print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
+                else:
+                    if set_tracks_total:
+                        number_from_filename += '/' + files_count
+
+                    audio['tracknumber'] = number_from_filename
                     audio.save()
                     print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
+                continue
+
+            tracknumber = audio['tracknumber'][0]
+            number = tracknumber.split('/')[0]
+
+            if len(number) == 0:
+                if number_from_filename == '':
+                    print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
+                    continue
                 else:
-                    print('[ skip ]', file)
-                    # print("\033[33m{}\033[0m{}" .format('[ skip ] ', file))
+                    number = number_from_filename
+            elif len(number) == 1:
+                number = '0' + number
+            elif not set_tracks_total:
+                print('[ skip ]', file)
+                continue
+
+            if set_tracks_total:
+                number += '/' + files_count
+
+            if tracknumber == number:
+                print('[ skip ]', file)
+                continue
+
+            audio['tracknumber'] = number
+            audio.save()
+            print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
+
+
+walker()
