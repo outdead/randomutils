@@ -24,15 +24,13 @@ def count_mp3_files(files):
 
 def walker():
     # TODO: Add any args reader
-    set_tracks_total = True if len(sys.argv) > 1 and sys.argv[1] == '-t' else False
+    set_totaltracks = True if len(sys.argv) > 1 and sys.argv[1] == '-t' else False
 
     for subdir, dirs, files in os.walk(os.getcwd()):
         if subdir.find('_skipme') != -1:
             continue
 
-        basedir = os.path.basename(subdir)
-        print(basedir)
-
+        print(os.path.basename(subdir))
         dirs.sort()
         files.sort()
 
@@ -49,7 +47,7 @@ def walker():
                 if number_from_filename == '':
                     print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
                 else:
-                    if set_tracks_total:
+                    if set_totaltracks:
                         number_from_filename += '/' + files_count
 
                     audio['tracknumber'] = number_from_filename
@@ -68,11 +66,11 @@ def walker():
                     number = number_from_filename
             elif len(number) == 1:
                 number = '0' + number
-            elif not set_tracks_total:
+            elif not set_totaltracks:
                 print('[ skip ]', file)
                 continue
 
-            if set_tracks_total:
+            if set_totaltracks:
                 number += '/' + files_count
 
             if tracknumber == number:
