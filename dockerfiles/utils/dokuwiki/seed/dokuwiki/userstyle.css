@@ -1,5 +1,9 @@
 /* conf/userstyle.css */
 
+/*
+ * Remove link icons.
+ * https://forum.dokuwiki.org/d/15857-how-to-remove-link-icons-solved
+ */
 a {
     background-image: none !important;
     padding: 0px !important;
@@ -23,10 +27,16 @@ a {
 }
 
 #dw__toc {
-    display: none !important;
+    display: none;
 }
 
-div.page h1 {
+#dw__toc > div {
+    position: absolute;
+    background: white;
+    /*background: whitesmoke;*/
+}
+
+div.page h1, h2 {
     border-bottom: 1px solid #a2a9b1;
     padding-bottom: 2px;
 }

@@ -9,6 +9,7 @@ services:
       - ./storage/dokuwiki/data:/var/www/html/data
       - ./storage/dokuwiki/lib:/var/www/html/lib
       - ./storage/dokuwiki/conf:/var/www/html/conf
-      - ./seed/dokuwiki/.htaccess:/var/www/html/.htaccess
+      - ./seed/dokuwiki/htaccess.dist:/var/www/html/.htaccess
       - ./seed/dokuwiki/userstyle.css:/var/www/html/conf/userstyle.css
+      - ./seed/dokuwiki/userscript.js:/var/www/html/conf/userscript.js
     restart: always
