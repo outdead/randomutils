@@ -6,10 +6,10 @@ services:
     ports:
       - "${DOKUWIKI_HTTP_PORT}:80"
     volumes:
-      - ./storage/dokuwiki/data:/var/www/html/data
-      - ./storage/dokuwiki/lib:/var/www/html/lib
-      - ./storage/dokuwiki/conf:/var/www/html/conf
-      - ./seed/dokuwiki/htaccess.dist:/var/www/html/.htaccess
-      - ./seed/dokuwiki/userstyle.css:/var/www/html/conf/userstyle.css
-      - ./seed/dokuwiki/userscript.js:/var/www/html/conf/userscript.js
+      - ${DOKUWIKI_STORAGE}/data:/var/www/html/data
+      - ${DOKUWIKI_STORAGE}/lib:/var/www/html/lib
+      - ${DOKUWIKI_STORAGE}/conf:/var/www/html/conf
+      - ${DOKUWIKI_SEED}/htaccess.dist:/var/www/html/.htaccess
+      - ${DOKUWIKI_SEED}/userstyle.css:/var/www/html/conf/userstyle.css
+      - ${DOKUWIKI_SEED}/userscript.js:/var/www/html/conf/userscript.js
     restart: always
