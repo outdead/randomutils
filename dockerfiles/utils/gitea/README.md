@@ -15,6 +15,6 @@
        $ sudo certbot --nginx -d git.domain.com
        $ sudo systemctl restart nginx
 
-5. After that open gitea installer via browser: **https://git.domain.com** and fill the form according your .env settings. After setup is completed register a new user (use link from the navigation bar). The first registered user has admin privileges.  
+5. After that open gitea installer via browser: **https://git.domain.com** and fill the form according your .env settings. After setup is completed register a new user (use link from the navigation bar). The first registered user has admin privileges. Set port in variable `Base Gitea URL` to same value as GITEA_WEB_PORT.  
 6. TODO: Create systemd unit.  
 7. TODO: Configure Drone.  

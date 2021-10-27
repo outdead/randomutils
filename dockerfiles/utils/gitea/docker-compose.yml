@@ -15,12 +15,12 @@ services:
     networks:
       - gitea
     volumes:
-      - ./storage/postgres:/var/lib/postgresql/data
+      - ${GITEA_STORAGE}/postgres:/var/lib/postgresql/data
 
   gitea:
     image: "gitea/gitea:${GITEA_VERSION}"
     volumes:
-      - ./storage/gitea:/data
+      - ${GITEA_STORAGE}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -47,7 +47,7 @@ services:
       - "${DRONE_HOST_HTTP_PORT}:8000"
       - "${DRONE_SERVER_HTTP_PORT}:9000"
     volumes:
-      - ./storage/drone:/var/lib/drone/
+      - ${GITEA_STORAGE}/drone:/var/lib/drone/
     restart: always
     depends_on:
       - gitea
