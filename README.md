@@ -1,7 +1,7 @@
 # Random Utils
 A set of scripts for various needs.  
 
-## Bash
+## Scripts
 1. [Expect](scripts/expect) - Deb snippet for automatically enter SSH password with using [Expect](https://en.wikipedia.org/wiki/Expect) utility.  
 2. [JD](scripts/java/decompiler) - JD is wrapper for [Procyon](http://manpages.ubuntu.com/manpages/bionic/man1/procyon.1.html) Java Decompiler.  
 3. [TAG](scripts/mp3/tag) - Adds a prefix "0" to the track number if it is less than 10.  
@@ -11,6 +11,9 @@ A set of scripts for various needs.
 7. [IPsec VPN](scripts/vpn/ipsec) - Deb cookbook for install [IPsec](https://en.wikipedia.org/wiki/IPsec) VPN.  
 
 ## Dockerfiles
+
+### Brokers
+1. [Kafka](dockerfiles/broker/kafka)
 
 ### Databases
 1. [Elasticsearch](dockerfiles/db/elasticsearch)  
