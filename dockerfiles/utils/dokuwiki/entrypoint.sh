@@ -47,5 +47,9 @@ rm -fr /var/www/html/lib/*
 cp -R /opt/tmp/lib/* /var/www/html/lib/
 chown -R www-data /var/www/html/lib
 
+cp /seed/dokuwiki/htaccess.dist /var/www/html/.htaccess
+cp /seed/dokuwiki/userstyle.css /var/www/html/conf/userstyle.css
+cp /seed/dokuwiki/userscript.js /var/www/html/conf/userscript.js
+
 # Start Server
 docker-php-entrypoint apache2-foreground

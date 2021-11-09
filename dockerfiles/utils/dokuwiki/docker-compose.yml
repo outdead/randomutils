@@ -9,7 +9,4 @@ services:
       - ${DOKUWIKI_STORAGE}/data:/var/www/html/data
       - ${DOKUWIKI_STORAGE}/lib:/var/www/html/lib
       - ${DOKUWIKI_STORAGE}/conf:/var/www/html/conf
-      - ${DOKUWIKI_SEED}/htaccess.dist:/var/www/html/.htaccess
-      - ${DOKUWIKI_SEED}/userstyle.css:/var/www/html/conf/userstyle.css
-      - ${DOKUWIKI_SEED}/userscript.js:/var/www/html/conf/userscript.js
     restart: always

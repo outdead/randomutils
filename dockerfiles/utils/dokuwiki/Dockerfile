@@ -1,6 +1,7 @@
 FROM php:7.4-apache
 
 COPY entrypoint.sh /entrypoint.sh
+COPY seed/dokuwiki/* /seed/dokuwiki/
 
 RUN chmod +x /entrypoint.sh && \
     mkdir -p /opt/src && \
