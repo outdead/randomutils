@@ -1,5 +1,9 @@
 # Editing mp3 tags
-Adds a prefix "0" to the track number if it is less than 10.  
+ID3 tag writer.  
+
+- Adds a prefix "0" to the track number if it is less than 10.
+- Sets total tracks number (add -t flag).
+- Copies ID3v2 to ID3v1 (add -c flag).
 
 ## Requirements
 https://mutagen.readthedocs.io/en/latest/user/id3.html#easy-id3  

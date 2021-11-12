@@ -5,6 +5,8 @@ import sys
 import re
 from mutagen.easyid3 import EasyID3
 
+version = "0.1.1"
+
 
 def get_number_from_file_name(filename):
     first = re.search('^(([0-9])([0-9]+)?)[ ._-]', filename)
@@ -25,6 +27,12 @@ def count_mp3_files(files):
 def walker():
     # TODO: Add any args reader
     set_totaltracks = True if len(sys.argv) > 1 and sys.argv[1] == '-t' else False
+    copy_v2_to_v1 = True if len(sys.argv) > 1 and sys.argv[1] == '-c' else False
+    print_version = True if len(sys.argv) > 1 and sys.argv[1] == '-v' else False
+
+    if print_version:
+        print("tag version v%s" % version)
+        return
 
     for subdir, dirs, files in os.walk(os.getcwd()):
         if subdir.find('_skipme') != -1:
@@ -43,43 +51,47 @@ def walker():
             number_from_filename = get_number_from_file_name(file)
             audio = EasyID3(os.path.join(subdir, file))
 
-            if "tracknumber" not in audio:
-                if number_from_filename == '':
-                    print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
-                else:
-                    if set_totaltracks:
-                        number_from_filename += '/' + files_count
+            if copy_v2_to_v1:
+                audio.save()
+                print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
+            else:
+                if "tracknumber" not in audio:
+                    if number_from_filename == '':
+                        print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
+                    else:
+                        if set_totaltracks:
+                            number_from_filename += '/' + files_count
 
-                    audio['tracknumber'] = number_from_filename
-                    audio.save()
-                    print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
-                continue
-
-            tracknumber = audio['tracknumber'][0]
-            number = tracknumber.split('/')[0]
-
-            if len(number) == 0:
-                if number_from_filename == '':
-                    print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
+                        audio['tracknumber'] = number_from_filename
+                        audio.save()
+                        print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
                     continue
-                else:
-                    number = number_from_filename
-            elif len(number) == 1:
-                number = '0' + number
-            elif not set_totaltracks:
-                print('[ skip ]', file)
-                continue
 
-            if set_totaltracks:
-                number += '/' + files_count
+                tracknumber = audio['tracknumber'][0]
+                number = tracknumber.split('/')[0]
 
-            if tracknumber == number:
-                print('[ skip ]', file)
-                continue
+                if len(number) == 0:
+                    if number_from_filename == '':
+                        print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
+                        continue
+                    else:
+                        number = number_from_filename
+                elif len(number) == 1:
+                    number = '0' + number
+                elif not set_totaltracks:
+                    print('[ skip ]', file)
+                    continue
 
-            audio['tracknumber'] = number
-            audio.save()
-            print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
+                if set_totaltracks:
+                    number += '/' + files_count
+
+                if tracknumber == number:
+                    print('[ skip ]', file)
+                    continue
+
+                audio['tracknumber'] = number
+                audio.save()
+                print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
 
 
 walker()

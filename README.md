@@ -4,7 +4,7 @@ A set of scripts for various needs.
 ## Scripts
 1. [Expect](scripts/expect) - Deb snippet for automatically enter SSH password with using [Expect](https://en.wikipedia.org/wiki/Expect) utility.  
 2. [JD](scripts/java/decompiler) - JD is wrapper for [Procyon](http://manpages.ubuntu.com/manpages/bionic/man1/procyon.1.html) Java Decompiler.  
-3. [TAG](scripts/mp3/tag) - Adds a prefix "0" to the track number if it is less than 10.  
+3. [TAG](scripts/mp3/tag) - ID3 tag writer.  
 4. [TELNET](scripts/telnet) - Runs command on remote server with TELNET protocol.  
 5. [OS User](scripts/user) - Creates and deletes Linux user.  
 6. [Silly Video Converter](scripts/video/convert) - Converts video files.  
