@@ -5,7 +5,7 @@ import sys
 import re
 from mutagen.easyid3 import EasyID3
 
-version = "0.1.1"
+version = "0.2.0"
 
 
 def get_number_from_file_name(filename):
@@ -27,6 +27,7 @@ def count_mp3_files(files):
 def walker():
     # TODO: Add any args reader
     set_totaltracks = True if len(sys.argv) > 1 and sys.argv[1] == '-t' else False
+    remove_trash = True if len(sys.argv) > 1 and sys.argv[1] == '-r' else False
     copy_v2_to_v1 = True if len(sys.argv) > 1 and sys.argv[1] == '-c' else False
     print_version = True if len(sys.argv) > 1 and sys.argv[1] == '-v' else False
 
@@ -51,7 +52,20 @@ def walker():
             number_from_filename = get_number_from_file_name(file)
             audio = EasyID3(os.path.join(subdir, file))
 
-            if copy_v2_to_v1:
+            if remove_trash:
+                if "album" not in audio:
+                    print("\033[31m{}\033[0m{}" .format('[ warn ] ', file))
+                else:
+                    album = audio['album'][0]
+                    album = album\
+                        .replace('[CDS]', '').replace('[EP]', '')\
+                        .replace('(CDS)', '').replace('(EP)', '')\
+                        .split(" [", 1)[0].strip()
+
+                    audio['album'] = album
+                    audio.save()
+                    print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
+            elif copy_v2_to_v1:
                 audio.save()
                 print("\033[32m{}\033[0m{}" .format('[ done ] ', file))
             else:
