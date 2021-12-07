@@ -57,3 +57,7 @@ textarea#wiki__text {
     min-height: 500px;
     max-width: 100%;
 }
+
+div#dokuwiki__footer div.buttons {
+    display: none;
+}
