@@ -8,7 +8,7 @@ FILE_NAME="$1"
 FORMAT="$2"
 OUTPUT_FILE_NAME="${FILE_NAME%.*}.${FORMAT}"
 
-QUALITY=5
+QUALITY=30
 
 while [[ -n "$1" ]]; do
     case "$1" in
@@ -61,7 +61,7 @@ done
 if [ -z "${FILE_NAME}" ]; then echo "filename is not set. Use $0 filename format -q quality" >&2; exit 1; fi
 if [ -z "${FORMAT}" ]; then echo "format is not set. Use $0 filename format -q quality" >&2; exit 1; fi
 
-ffmpeg -i "${FILE_NAME}" -q:v "${QUALITY}" "${OUTPUT_FILE_NAME}" && \
+ffmpeg -i "${FILE_NAME}" -crf "${QUALITY}" "${OUTPUT_FILE_NAME}" && \
 echo "    quality : ${QUALITY}" && \
 echo " input file : ${FILE_NAME}" && \
 echo "output file : ${OUTPUT_FILE_NAME}"

@@ -18,11 +18,11 @@ sudo chmod +x /usr/bin/conv
 
 ## Usage
 ```bash
-./convert.sh FILE_NAME FORMAT QUALITY
+./conv.sh FILE_NAME FORMAT QUALITY
 ```
 
 ## Example 
 ```bash
-./convert.sh '2021-05-17 01-32-56.mkv' mp4
-./convert.sh '2021-05-17 01-32-56.mkv' mp4 5
+./conv.sh '2021-05-17 01-32-56.mkv' mp4
+./conv.sh '2021-05-17 01-32-56.mkv' mp4 23
 ```
