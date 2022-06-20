@@ -11,6 +11,7 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         add_header X-Robots-Tag "noindex, nofollow, nosnippet, noarchive";
+        client_max_body_size 15M;
         #proxy_set_header X-Forwarded-Proto https;
         #proxy_set_header Upgrade $http_upgrade;
     }
