@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  focalboard:
+    image: "mattermost/focalboard:7.0.1"
+    ports:
+      - "7079:8000"
+    volumes:
+      - "./storage/focalboard/data:/data"
+      #- "./storage/focalboard/webapp/pack:/opt/focalboard/pack"
+      - "./config.json:/opt/focalboard/config.json"
+    environment:
+      - VIRTUAL_HOST=focalboard.local
+      - VIRTUAL_PORT=8000
