@@ -5,7 +5,7 @@ import sys
 import re
 from mutagen.easyid3 import EasyID3
 
-version = "0.2.4"
+version = "0.2.5"
 
 
 def get_number_from_file_name(filename):
@@ -70,7 +70,8 @@ def walker():
                         .replace('(CD2)', '').replace('[CD2]', '')\
                         .replace('(CD 1)', '').replace('[CD 1]', '')\
                         .replace('(CD 2)', '').replace('[CD 2]', '')\
-                        .split(" [", 1)[0].strip()
+                        .split(" [", 1)[0].strip()\
+                        .split(" (", 1)[0].strip()
 
                     audio['album'] = album
                     audio.save()
