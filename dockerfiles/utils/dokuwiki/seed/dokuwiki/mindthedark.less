@@ -1,0 +1,54 @@
+#dokuwiki__header {
+    margin-top: -1em;
+}
+
+#dokuwiki__aside {
+    line-height: 1.5;
+}
+
+#dokuwiki__usertools {
+    position: inherit;
+    padding-bottom: 3px;
+}
+
+@media screen and (max-width: 960px) {
+    #dokuwiki__usertools {
+        position: absolute;
+        padding-bottom: 0;
+    }
+
+    #dokuwiki__header {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    html, body {
+        overflow-x: hidden;
+    }
+}
+
+#dw__toc {
+    border-bottom: none;
+    margin-top: -2.556em;
+}
+
+#dokuwiki__header {
+    padding-bottom: 1em;
+}
+
+#dw__toc > div {
+    background: var(--background,#fff);
+    border: 1px solid var(--border,#ccc);
+    z-index: 99;
+}
+
+.dokuwiki .wrap_box {
+    background: var(--background,#fff);
+    border: 1px solid var(--border,#ccc);
+    color: var(--text,#333);
+}
+
+hr {
+    border-bottom: none;
+}
