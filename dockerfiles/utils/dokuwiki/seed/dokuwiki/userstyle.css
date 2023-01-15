@@ -61,3 +61,11 @@ textarea#wiki__text {
 div#dokuwiki__footer div.buttons {
     display: none;
 }
+
+img {
+    border: none !important;
+}
+
+td img {
+    padding: 0 !important;
+}
