@@ -6,9 +6,10 @@ A set of scripts for various needs.
 2. [JD](scripts/java/decompiler) - JD is wrapper for [Procyon](http://manpages.ubuntu.com/manpages/bionic/man1/procyon.1.html) Java Decompiler.  
 3. [TAG](scripts/multimedia/mp3/tag) - ID3 tag writer.  
 4. [Silly Video Converter](scripts/multimedia/video/convert) - Converts video files.  
-5. [TELNET](scripts/telnet) - Runs command on remote server with TELNET protocol.  
-6. [OS User](scripts/user) - Creates and deletes Linux user.  
-7. [IPsec VPN](scripts/vpn/ipsec) - Deb cookbook for install [IPsec](https://en.wikipedia.org/wiki/IPsec) VPN.  
+5. [Shortcut](scripts/shortcut) - Creates shortcut on Desktop to file.  
+6. [TELNET](scripts/telnet) - Runs command on remote server with TELNET protocol.  
+7. [OS User](scripts/user) - Creates and deletes Linux user.  
+8. [IPsec VPN](scripts/vpn/ipsec) - Deb cookbook for install [IPsec](https://en.wikipedia.org/wiki/IPsec) VPN.  
 
 ## Dockerfiles
 
