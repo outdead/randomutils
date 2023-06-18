@@ -6,20 +6,24 @@ AUTHOR="Pavel Korotkiy (outdead)"
 
 # Usage: ./shortcut.sh [name] [path]
 
-(
-	echo "[Desktop Entry]";
-	echo "Name=$1";
-	echo "Comment=";
-	echo "GenericName=";
-	echo "Keywords=";
-	echo "Exec=$2";
-	echo "Terminal=false";
-	echo "Type=Application";
-	echo "Icon=$1";
-	echo "Path=";
-	echo "Categories=";
-	echo "NoDisplay=false";
-) > "/usr/share/applications/$1.desktop"
+savefile() {
+  sudo bash -c "cat <<EOF > /usr/share/applications/$1.desktop
+[Desktop Entry]
+Name=$1
+Comment=
+GenericName=
+Keywords=
+Exec=$2
+Terminal=false
+Type=Application
+Icon=$1
+Path=
+Categories=
+NoDisplay=false
+EOF"
+}
+
+savefile "$1" "$2"
 
 DESKTOP_FOLDER="/home/$USER/Desktop"
 [ -d "${DESKTOP_FOLDER}" ] || DESKTOP_FOLDER="/home/$USER/Рабочий стол"
