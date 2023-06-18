@@ -24,4 +24,4 @@ AUTHOR="Pavel Korotkiy (outdead)"
 DESKTOP_FOLDER="/home/$SUDO_USER/Desktop"
 [ -d "${DESKTOP_FOLDER}" ] || DESKTOP_FOLDER="/home/$SUDO_USER/Рабочий стол"
 
-kate "/usr/share/applications/$1.desktop" && cp "/usr/share/applications/$1.desktop" "${DESKTOP_FOLDER}/$1.desktop"
+kate "/usr/share/applications/$1.desktop" && sudo cp "/usr/share/applications/$1.desktop" "${DESKTOP_FOLDER}/$1.desktop"
